@@ -1,3 +1,11 @@
+# -------------------------------------------------------------
+# demonstrates a task scheduler, displaying the time when the 
+# the next job will run based on the scheduler configuration
+# input and the 'current time'.
+#
+# Harold "Chip" Newman
+# chip@computerchip.tech
+# -------------------------------------------------------------
 
 import sys
 
@@ -81,6 +89,6 @@ if __name__ == '__main__':
     current_hour, current_minute = current_time.split(':')
     current_hour = int(current_hour)
     current_minute = int(current_minute)
-    
+
     counter = 0
     main()
