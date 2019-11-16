@@ -21,11 +21,11 @@ whitespace separated and each entry is on a separate line.
 We would like you to write a command line program that outputs the soonest time at which each of the commands will 
 run and whether this will be today or tomorrow.
 
-The config input will be via STDIN, and the output should be via STDOUT. The 'current time' will be the single command 
-line argument to the program in the format HH:MM.
+The config input will be via STDIN, and the output should be via STDOUT. The 'current time' will be the single 
+command line argument to the program in the format HH:MM.
 
-For example given the above examples as input and the simulated 'current time' command-line argument 16:10 the output 
-should be
+For example given the above examples as input and the simulated 'current time' command-line argument 16:10 the 
+output should be:
 
 1:30 tomorrow - /bin/run_me_daily
 16:45 today - /bin/run_me_hourly
