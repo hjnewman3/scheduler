@@ -35,7 +35,7 @@ def run_me_sixty_times(hour, minute, command):
     # Starts at the top of the hour if current hour and 
     # scheduled configuration input hour aren't the same.
     # (current minute == minutes) returns true if the scheduled
-    # configuration input minutes is "*".
+    # configuration input minute value is "*".
     if (current_hour != hour) and (current_minute == minute):
         minute = 0
 
