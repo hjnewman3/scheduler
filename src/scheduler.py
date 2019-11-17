@@ -61,11 +61,13 @@ def main():
     for line in sys.stdin:
         config_minute, config_hour, command = line.split()
 
+        # Formats the config_minute
         if (config_minute == '*'):
             config_minute = current_minute
         else:
             config_minute = int(config_minute)
 
+        # Formats the config_hour
         if (config_hour == '*'):
             config_hour = current_hour
         else:
@@ -73,17 +75,15 @@ def main():
 
         if (command == '/bin/run_me_daily'):
             run_me_daily(config_hour, config_minute, command)
-
-        if (command == '/bin/run_me_hourly'):
+        elif (command == '/bin/run_me_hourly'):
             run_me_hourly(config_hour, config_minute, command)
-
-        if (command == '/bin/run_me_every_minute'):
+        elif (command == '/bin/run_me_every_minute'):
             run_me_every_minute(config_hour, config_minute, command)
-
-        if (command == '/bin/run_me_sixty_times'):
+        elif (command == '/bin/run_me_sixty_times'):
             run_me_sixty_times(config_hour, config_minute, command)
 
 if __name__ == '__main__':
+    # Obtains the current time from the command-line
     current_time = sys.argv[1]
 
     current_hour, current_minute = current_time.split(':')
@@ -91,4 +91,5 @@ if __name__ == '__main__':
     current_minute = int(current_minute)
 
     counter = 0
+    
     main()
