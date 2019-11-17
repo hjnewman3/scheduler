@@ -38,7 +38,7 @@ This program makes use of the stdin() and stdout() of the Python sys Module. No 
 to run it.
 
 # Usage
-I've supplied a test scheduler configuration file to mimic the desire input of the program requirements
+I've supplied a test scheduler configuration file to mimic the input as given in the program requirements
 
 ## To execute the program
 ```bash
