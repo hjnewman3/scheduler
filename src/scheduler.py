@@ -83,9 +83,8 @@ if __name__ == '__main__':
     # Obtains the current time from the command-line
     current_time = sys.argv[1]
 
-    current_hour, current_minute = current_time.split(':')
-    current_hour = int(current_hour)
-    current_minute = int(current_minute)
+    # Obtains the current hour and current minute as an int
+    current_hour, current_minute = (int(t) for t in current_time.split(':'))
 
     counter = 0
     
