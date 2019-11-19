@@ -63,16 +63,10 @@ def main():
         config_minute, config_hour, command = line.split()
 
         # Formats the config_minute
-        if (config_minute == '*'):
-            config_minute = current_minute
-        else:
-            config_minute = int(config_minute)
-
+        config_minute = current_minute if (config_minute == '*') else int(config_minute)
+ 
         # Formats the config_hour
-        if (config_hour == '*'):
-            config_hour = current_hour
-        else:
-            config_hour = int(config_hour)
+        config_hour = current_hour if (config_hour == '*') else int(config_hour)
 
         if (command == '/bin/run_me_daily'):
             run_me_daily(config_hour, config_minute, command)
