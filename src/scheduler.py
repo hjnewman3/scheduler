@@ -46,12 +46,10 @@ def run_me_sixty_times(config_hour, config_minute, command):
 # Determines what day to display by comparing the current time
 # passed in and the scheduled configuration input time.
 def determine_day(config_hour, config_minute):
-    if (current_hour > config_hour):
+    if (current_hour > config_hour) or \
+        ((current_hour == config_hour) and (current_minute > config_minute)):
         return 'tomorrow'
 
-    if (current_hour == config_hour) and (current_minute > config_minute):
-        return 'tomorrow'
-    
     return 'today'
 
 def print_job(config_hour, config_minute, day, command):
