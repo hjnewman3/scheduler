@@ -55,6 +55,9 @@ def determine_day(config_hour, config_minute):
 def print_job(config_hour, config_minute, day, command):
     sys.stdout.write('{}:{:02} {} - {}\n'.format(config_hour, config_minute, day, command))
 
+def command_not_found(command):
+    sys.stderr.write('Error: command "{}" not found!\n'.format(command))
+
 def main():
     for line in sys.stdin:
         config_minute, config_hour, command = line.split()
@@ -79,6 +82,8 @@ def main():
             run_me_every_minute(config_hour, config_minute, command)
         elif (command == '/bin/run_me_sixty_times'):
             run_me_sixty_times(config_hour, config_minute, command)
+        else:
+            command_not_found(command)
 
 if __name__ == '__main__':
     # Obtains the current time from the command-line
