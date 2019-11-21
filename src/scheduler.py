@@ -67,12 +67,19 @@ def main():
     for line in sys.stdin:
         config_minute, config_hour, command = line.split()
 
+        # runs if neither min nor hour are '*'
         if (config_minute != '*' and config_hour != '*'):
             run_me_daily(config_hour, config_minute, command)
+
+        # runs only if hour is '*'
         elif (config_minute != '*' and config_hour == '*'):
             run_me_hourly(config_hour, config_minute, command)
+
+        # runs only if both min and hour are '*'
         elif (config_minute == '*' and config_hour == '*'):
             run_me_every_minute(config_hour, config_minute, command)
+
+        # runs only if min is '*'
         elif (config_minute == '*' and config_hour != '*'):
             run_me_sixty_times(config_hour, config_minute, command)
 
