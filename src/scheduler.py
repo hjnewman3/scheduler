@@ -10,9 +10,13 @@
 import sys
 
 def run_me_daily(config_hour, config_minute, command):
+    config_hour = int(config_hour)
+    config_minute = int(config_minute)
     print_job(config_hour, config_minute, determine_day(config_hour, config_minute), command)
 
 def run_me_hourly(config_hour, config_minute, command):
+    config_hour = current_hour
+    config_minute = int(config_minute)
     # Determines whether to roll over to the next hour by comparing
     # the current minute to the scheduler configuration input minute.
     if (current_minute > config_minute):
@@ -26,10 +30,14 @@ def run_me_hourly(config_hour, config_minute, command):
     print_job(config_hour, config_minute, determine_day(config_hour, config_minute), command)
 
 def run_me_every_minute(config_hour, config_minute, command):
+    config_hour = current_hour
+    config_minute = current_minute
     print_job(config_hour, config_minute, determine_day(config_hour, config_minute), command)
 
 # Number of executions will be limited by the counter.
 def run_me_sixty_times(config_hour, config_minute, command):
+    config_hour = int(config_hour)
+    config_minute = current_minute
     global counter
 
     # Starts at the top of the hour if current hour and 
@@ -55,29 +63,19 @@ def determine_day(config_hour, config_minute):
 def print_job(config_hour, config_minute, day, command):
     sys.stdout.write('{}:{:02} {} - {}\n'.format(config_hour, config_minute, day, command))
 
-def command_not_found(command):
-    sys.stderr.write('Error: command "{}" not found!\n'.format(command))
-
 def main():
     for line in sys.stdin:
         config_minute, config_hour, command = line.split()
 
-        # Formats the config_minute
-        config_minute = current_minute if (config_minute == '*') else int(config_minute)
- 
-        # Formats the config_hour
-        config_hour = current_hour if (config_hour == '*') else int(config_hour)
-
-        if (command == '/bin/run_me_daily'):
+        if (config_minute != '*' and config_hour != '*'):
             run_me_daily(config_hour, config_minute, command)
-        elif (command == '/bin/run_me_hourly'):
+        elif (config_minute != '*' and config_hour == '*'):
             run_me_hourly(config_hour, config_minute, command)
-        elif (command == '/bin/run_me_every_minute'):
+        elif (config_minute == '*' and config_hour == '*'):
             run_me_every_minute(config_hour, config_minute, command)
-        elif (command == '/bin/run_me_sixty_times'):
+        elif (config_minute == '*' and config_hour != '*'):
             run_me_sixty_times(config_hour, config_minute, command)
-        else:
-            command_not_found(command)
+
 
 if __name__ == '__main__':
     # Obtains the current time from the command-line
